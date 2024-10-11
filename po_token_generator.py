@@ -55,3 +55,9 @@ def regenerate_network_token():
                   f, ensure_ascii=False, indent=4)
 
     driver.quit()
+
+def token_verifier():
+    with open("token.json", 'r', encoding='utf-8') as f:
+        token_file = json.load(f)
+    return token_file['visitorData'], token_file['po_token']
+
