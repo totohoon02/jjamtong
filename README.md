@@ -7,7 +7,7 @@
 
 ### Usage
 
-```
+```python
 # example.py
 
 regenerate_network_token()
@@ -17,6 +17,6 @@ yt = YouTube(url, on_progress_callback = on_progress,
 )
 
 # token verifier
-            yt = YouTube(url, on_progress_callback=on_progress,
-                         use_po_token=True, po_token_verifier=token_verifier)
+yt = YouTube(url, on_progress_callback=on_progress,
+            use_po_token=True, po_token_verifier=token_verifier)
 ```
