@@ -20,3 +20,12 @@ yt = YouTube(url, on_progress_callback = on_progress,
 yt = YouTube(url, on_progress_callback=on_progress,
             use_po_token=True, po_token_verifier=token_verifier)
 ```
+
+## sub 'instaloader' that not work by :robot: issue
+- bypassing with network logs get thumbnails
+- download images and filtered images 'width == height' / user_profile_image
+- apply rest images to OPENAI VISION
+- very happy!
+
+## pytubefix
+- ?
