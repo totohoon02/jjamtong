@@ -1,4 +1,4 @@
-# Youtube po-token generator
+## Youtube po-token generator
 
 - with selenium
 - original repo: https://github.com/JuanBindez/pytubefix
@@ -29,3 +29,13 @@ yt = YouTube(url, on_progress_callback=on_progress,
 
 ## pytubefix
 - ?
+
+## bash_profile
+```bash
+# docker
+build myImage:dev
+
+# python
+venv 3.10 # default
+run 8080 # default
+```
