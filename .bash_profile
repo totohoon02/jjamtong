@@ -2,6 +2,22 @@
 alias up="docker compose up -d"
 alias down="docker compose down"
 
+pydocker(){
+    echo 'FROM python:3.10-slim' > Dockerfile
+    echo '' >> Dockerfile
+    echo 'WORKDIR /app' >> Dockerfile
+    echo '' >> Dockerfile
+    echo 'COPY requirements.txt .' >> Dockerfile
+    echo '' >> Dockerfile
+    echo 'RUN pip install -r requirements.txt' >> Dockerfile
+    echo '' >> Dockerfile
+    echo 'COPY . .' >> Dockerfile
+    echo '' >> Dockerfile
+    echo 'EXPOSE 8000' >> Dockerfile
+    echo '' >> Dockerfile
+    echo 'CMD ["uvicorn", "main:app"]' >> Dockerfile
+}
+
 build(){
     docker build -t "$@" .
 }
