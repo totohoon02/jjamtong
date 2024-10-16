@@ -26,7 +26,12 @@ build(){
 
 venv(){
     version=${1:-3.10}
-    py -$version -m venv .venv
+
+    if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
+        py -$version -m venv .venv
+    else
+        python$version -m venv .venv
+    fi
 }
 
 activate(){
@@ -88,4 +93,21 @@ db(){
     echo "1. add 'from db import Base' to model"
     echo "2. model class must inherit Base"
     echo "2. add 'models.Base.metadata.create_all(bind=engine)' to main"
+}
+
+list(){
+    echo "###### DOCKER ######"
+    echo "up"
+    echo "down"
+    echo "pydocker"
+    echo "build <image:dev>"
+    echo ""
+    echo "###### PYTHON ######"
+    echo "venv <py:version>"
+    echo "activate"
+    echo "requirements"
+    echo "freeze"
+    echo "fast"
+    echo "run <port>"
+    echo "db"
 }
