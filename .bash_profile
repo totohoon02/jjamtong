@@ -30,7 +30,11 @@ venv(){
 }
 
 activate(){
-    . .venv/Scripts/activate
+    if [ -d "./.venv/Scripts/" ]; then
+        . .venv/Scripts/activate
+    else
+        . .venv/bin/activate
+    fi
 }
 
 requirements(){
