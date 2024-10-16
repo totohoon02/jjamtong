@@ -46,7 +46,7 @@ fast(){
     activate
     pip install fastapi uvicorn
     freeze
-    
+
     echo 'from fastapi import FastAPI' > main.py
     echo '' >> main.py
     echo 'app = FastAPI()' >> main.py
@@ -59,4 +59,29 @@ fast(){
 run() {
     port=${1:-8000}
     uvicorn main:app --reload --port=$port
+}
+
+db(){
+    # install package
+    pip install sqlalchemy
+
+    # create db.py
+    echo 'from sqlalchemy import create_engine' > db.py
+    echo 'from sqlalchemy.ext.declarative import declarative_base' >> db.py
+    echo 'from sqlalchemy.orm import sessionmaker' >> db.py
+    echo '' >> db.py
+    echo 'SQLALCHEMY_DATABASE_URL = "sqlite:///./mydb.db"' >> db.py
+    echo '' >> db.py
+    echo 'engine = create_engine(' >> db.py
+    echo '    SQLALCHEMY_DATABASE_URL, connect_args={"check_same_thread": False}' >> db.py
+    echo ')' >> db.py
+    echo '' >> db.py
+    echo 'SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)' >> db.py
+    echo '' >> db.py
+    echo 'Base = declarative_base()' >> db.py
+
+    # 
+    echo "1. add 'from db import Base' to model"
+    echo "2. model class must inherit Base"
+    echo "2. add 'models.Base.metadata.create_all(bind=engine)' to main"
 }
