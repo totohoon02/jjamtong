@@ -24,11 +24,13 @@ build(){
 
 # python 
 
-venv(){
+venv() {
     version=${1:-3.10}
 
     if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
         py -$version -m venv .venv
+    elif [[ "$OSTYPE" == "darwin"* ]]; then
+        python$version -m venv .venv
     else
         python$version -m venv .venv
     fi
