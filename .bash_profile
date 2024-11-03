@@ -24,13 +24,11 @@ build(){
 
 # python 
 
-venv() {
+venv(){
     version=${1:-3.10}
 
     if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
         py -$version -m venv .venv
-    elif [[ "$OSTYPE" == "darwin"* ]]; then
-        python$version -m venv .venv
     else
         python$version -m venv .venv
     fi
@@ -91,10 +89,17 @@ db(){
     echo '' >> db.py
     echo 'Base = declarative_base()' >> db.py
 
-    # 
-    echo "1. add 'from db import Base' to model"
-    echo "2. model class must inherit Base"
-    echo "2. add 'models.Base.metadata.create_all(bind=engine)' to main"
+    # create models.py
+    
+    echo 'from db import Base' > models.py
+    echo '' >> models.py
+    echo 'class DummyModel(Base):' >> models.py
+    echo '    pass' >> models.py
+    
+    # main.py
+    echo 'import models' >> main.py
+    echo 'from db import engine' >> main.py
+    echo 'models.Base.metadata.create_all(bind=engine)' >> main.py
 }
 
 list(){
