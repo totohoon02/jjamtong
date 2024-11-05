@@ -22,6 +22,12 @@ build(){
     docker build -t "$@" .
 }
 
+rmi(){
+    for image_id in $(docker images --filter "dangling=true" -q); do
+        docker rmi "$image_id"
+    done
+}
+
 # python 
 
 venv(){
@@ -102,12 +108,33 @@ db(){
     echo 'models.Base.metadata.create_all(bind=engine)' >> main.py
 }
 
+
+# bash
+pk() {
+    port=$1
+
+    if [[ -z "$port" ]]; then
+        echo "Usage: $0 <port>"
+        exit 1
+    fi
+
+    pid_to_kill=$(netstat -tuln 2>/dev/null | grep ":$port" | awk '{print $7}' | cut -d'/' -f1)
+
+    if [[ -n "$pid_to_kill" ]]; then
+        echo "killed process on $port"
+        kill -9 "$pid_to_kill"
+    else
+        echo "No process found on $port"
+    fi
+}
+
 list(){
     echo "###### DOCKER ######"
     echo "up"
     echo "down"
     echo "pydocker"
     echo "build <image:dev>"
+    echo "rmi"
     echo ""
     echo "###### PYTHON ######"
     echo "venv <py:version>"
@@ -117,4 +144,7 @@ list(){
     echo "fast"
     echo "run <port>"
     echo "db"
+    echo ""
+    echo "###### BASH COMMAND ######"
+    echo "pk <port>"
 }
