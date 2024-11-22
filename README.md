@@ -53,6 +53,6 @@ list(){
     echo "pk <port>"
     echo
     echo "###### github COMMAND ######"
-    echo "git <language>"
+    echo "ignore <language>"
 }
 ```
