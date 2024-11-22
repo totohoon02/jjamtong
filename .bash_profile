@@ -128,6 +128,16 @@ pk() {
     fi
 }
 
+# git
+ignore(){
+    language=$(echo "$1" | sed -E 's/^(.)/\U\1/')
+    curl https://raw.githubusercontent.com/github/gitignore/refs/heads/main/$language.gitignore > .gitignore
+}
+
+
+
+# help
+
 list(){
     echo "###### DOCKER ######"
     echo "up"
@@ -147,4 +157,7 @@ list(){
     echo ""
     echo "###### BASH COMMAND ######"
     echo "pk <port>"
+    echo
+    echo "###### github COMMAND ######"
+    echo "git <language>"
 }
