@@ -30,29 +30,3 @@ yt = YouTube(url, on_progress_callback=on_progress,
 ## pytubefix
 - ?
 
-## bash_profile
-```bash
-list(){
-    echo "###### DOCKER ######"
-    echo "up"
-    echo "down"
-    echo "pydocker"
-    echo "build <image:dev>"
-    echo "rmi"
-    echo ""
-    echo "###### PYTHON ######"
-    echo "venv <py:version>"
-    echo "activate"
-    echo "requirements"
-    echo "freeze"
-    echo "fast"
-    echo "run <port>"
-    echo "db"
-    echo ""
-    echo "###### BASH COMMAND ######"
-    echo "pk <port>"
-    echo
-    echo "###### github COMMAND ######"
-    echo "ignore <language>"
-}
-```
